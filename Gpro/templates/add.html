@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- form for uploading -->
+     <form action="{% url 'add_user' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">upload image:</label>
+        <input type="file" name="image" required>
+        <button type="submit">submit</button>
+     </form>
+
+     <h2>Gallery</h2>
+     <!-- display image if there are any -->
+      <div>
+        {% for i in gallery_images %}
+            {% if i.feedimage %}
+            <div>
+                <img src="{{i.feedimage.url}}" alt="Gallery image" width="300">
+            </div>
+            {% else %}
+        <p> No image for this gallery item </p>
+        {% endif %}
+    {% empty %}
+        <p>No mage uploaded yet.</p>
+    {% endfor %}
+      </div>
+</body>
+</html>
