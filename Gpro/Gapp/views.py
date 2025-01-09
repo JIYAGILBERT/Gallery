@@ -5,7 +5,7 @@ from django.contrib import messages
 from . models import Gallery
 
 def main(request):
-    return render(request,'welcome.html')
+    return render(request,'index.html')
 
 def login_user(request):
     if request.POST:
